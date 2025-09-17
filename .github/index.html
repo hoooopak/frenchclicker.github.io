@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>french</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+    </style>
+    <script src="script.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+    </style>
+  </head>
+
+  <body>
+    <div class="grid">
+      <div class="container auto">
+        <h1>Unlocks</h1>
+        <div class="scroll">
+          <div class="upgrade chef">
+            <div class="utext-block">
+              <span class="header">Croissant Chef</span>
+              <div class="statinline">
+                <span class="amount" id="chef">0</span>
+                <span class="price">$100</span>
+              </div>
+              <br />
+              <span class="description">+1 croissants per second</span>
+              <br />
+              <div class="btn-container">
+                <button class="buy-btn" onclick="buy(100,'chef',1)">Buy</button>
+              </div>
+            </div>
+          </div>
+          <div class="upgrade bakery">
+            <div class="utext-block">
+              <span class="header">Croissant Bakery</span>
+              <div class="statinline">
+                <span class="amount" id="bakery">0</span>
+                <span class="price">$300</span>
+              </div>
+              <br />
+              <span class="description">+4 croissants per second</span>
+              <br />
+              <div class="btn-container">
+                <button
+                  class="buy-btn bakerybutton"
+                  onclick="buy(350,'bakery',4)"
+                  disabled="true"
+                >
+                  Buy
+                </button>
+                <div class="locked bakerylock" aria-disabled="true">
+                  Buy <span id="bakeryamount">5</span> more Chefs to unlock
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="upgrade market" aria-disabled="true">
+            <div class="utext-block">
+              <span class="header">Croissant Market</span>
+              <div class="statinline">
+                <span class="amount" id="market">0</span>
+                <span class="price">$600</span>
+              </div>
+              <br />
+              <span class="description">+8 croissants per second</span>
+              <br />
+              <div class="btn-container">
+                <button
+                  class="buy-btn marketbutton"
+                  onclick="buy(600,'market',8)"
+                  disabled
+                >
+                  Buy
+                </button>
+                <div class="locked marketlock" aria-disabled="true">
+                  Buy <span id="marketamount">10</span> more Bakeries to unlock
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="upgrade factory" aria-disabled="true">
+            <div class="utext-block">
+              <span class="header">Croissant Factory</span>
+              <div class="statinline">
+                <span class="amount" id="factory">0</span>
+                <span class="price">$1500</span>
+              </div>
+              <br />
+              <span class="description">+20 croissants per second</span>
+              <br />
+              <div class="btn-container">
+                <button
+                  class="buy-btn factorybutton"
+                  onclick="buy(1500,'factory',20)"
+                  disabled
+                >
+                  Buy
+                </button>
+                <div class="locked factorylock" aria-disabled="true">
+                  Buy <span id="factoryamount">15</span> more Markets to unlock
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="upgrade industry" aria-disabled="true">
+            <div class="utext-block">
+              <span class="header">Croissant Industry</span>
+              <div class="statinline">
+                <span class="amount" id="industry">0</span>
+                <span class="price">$4000</span>
+              </div>
+              <br />
+              <span class="description" aria-disabled="true"
+                >+60 croissants per second</span
+              >
+              <br />
+              <div class="btn-container">
+                <button
+                  class="buy-btn industrybutton"
+                  onclick="buy(4000,'industry',60)"
+                  disabled
+                >
+                  Buy
+                </button>
+                <div class="locked industrylock" aria-disabled="true">
+                  Buy <span id="industryamount">25</span> more Factories to
+                  unlock
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="upgrade company" aria-disabled="true">
+            <div class="utext-block">
+              <span class="header">Croissant Corp.</span>
+              <div class="statinline">
+                <span class="amount" id="company">0</span>
+                <span class="price">$10000</span>
+              </div>
+              <br />
+              <span class="description">+150 croissants per second</span>
+              <br />
+              <div class="btn-container">
+                <button
+                  class="buy-btn companybutton"
+                  onclick="buy(10000,'company',150)"
+                  disabled
+                >
+                  Buy
+                </button>
+                <div class="locked companylock" aria-disabled="true">
+                  Buy <span id="companyamount">50</span> more Industries to
+                  unlock
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container stats">
+        <h1>Stats</h1>
+        <div class="scroll">
+          <button class="clicker" onclick="clicked()">
+            <div class="b"></div>
+            <div class="w"></div>
+            <div class="r"></div>
+          </button>
+        </div>
+        <div class="statcontainer">
+          <div class="statbar">
+            <div class="stat">
+              <span>Croissants</span>
+              <br />
+              <span id="croissants">0</span>
+            </div>
+            <div class="stat">
+              <span>Production</span>
+              <br />
+              <span id="produc">0</span>
+            </div>
+            <div class="stat">
+              <span>Money</span>
+              <br />
+              <span>$</span><span id="cash">0</span>
+            </div>
+          </div>
+          <div class="progressbar">
+            <div class="progress" id="pro1"></div>
+          </div>
+          <div class="progressbar pro" style="display: none" id="pro2bar">
+            <div style="display: none" class="progress pro" id="pro2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container up">
+        <h1>Upgrades</h1>
+        <div class="scroll">
+          <div class="upgrade tef">
+            <div class="utext-block">
+              <span class="header">tu es francais</span>
+              <div class="statinline">
+                <span class="level" id="teflevel">I</span>
+                <span class="price" id="tef">2 Chefs</span>
+              </div>
+              <br />
+              <span class="description"
+                >Max sell amount is increased to
+                <span class="tefstat">50</span></span
+              >
+              <br />
+              <button
+                class="buy-btn u tef-button"
+                onclick="buyupgrade('tef',pricepair['tef'],upgradeprices.tef)"
+              >
+                Buy
+              </button>
+            </div>
+          </div>
+          <div class="upgrade tea">
+            <div class="utext-block">
+              <span class="header">tu es anglais</span>
+              <div class="statinline">
+                <span class="level" id="tealevel">I</span>
+                <span class="price" id="tea">3 Bakeries</span>
+              </div>
+              <br />
+              <span class="description"
+                >Sell time is decreased to
+                <span class="teastat">4</span> seconds</span
+              >
+              <br />
+              <button
+                class="buy-btn u tea-button"
+                onclick="buyupgrade('tea',pricepair['tea'], upgradeprices.tea)"
+              >
+                Buy
+              </button>
+            </div>
+          </div>
+          <div class="upgrade je">
+            <div class="utext-block">
+              <span class="header">je mappelle </span>
+              <div class="statinline">
+                <span class="level" id="jelevel">I</span>
+                <span class="price" id="je">2 Markets</span>
+              </div>
+              <br />
+              <span class="description"
+                >Croissant sell price is increased to $<span class="jestat"
+                  >3</span
+                ></span
+              >
+              <br />
+              <button
+                class="buy-btn u je-button"
+                onclick="buyupgrade('je',pricepair['je'],upgradeprices.je)"
+              >
+                Buy
+              </button>
+            </div>
+          </div>
+          <div class="upgrade jv">
+            <div class="utext-block">
+              <span class="header">je vais</span>
+              <div class="statinline">
+                <span class="level" id="jvlevel">I</span>
+                <span class="price">3 Markets</span>
+              </div>
+              <br />
+              <span class="description">Unlocks are 5% cheaper</span>
+              <br />
+              <button
+                class="buy-btn u"
+                onclick="buyupgrade('jv',pricepair['jv'],upgradeprices.jv)"
+              >
+                Buy
+              </button>
+            </div>
+          </div>
+          <div class="upgrade tv">
+            <div class="utext-block">
+              <span class="header">tu vas</span>
+              <div class="statinline">
+                <span class="level" id="tvlevel">I</span>
+                <span class="price">5 Markets</span>
+              </div>
+              <br />
+              <span class="description">Production is 0.25s faster</span>
+              <br />
+              <button class="buy-btn u">Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
